@@ -1,0 +1,56 @@
+@import "styles/variables";
+
+.container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .detail {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .desc {
+      font-size: 16px;
+      line-height: 25px;
+      color: $gray;
+    }
+  }
+
+  .rooms {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 290px;
+    overflow-y: auto;
+
+    .room {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      min-height: 35px;
+
+      .title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .info {
+        font-size: 14px;
+        font-weight: 600;
+        color: $primary;
+      }
+
+      button {
+        padding: 6px 12px;
+      }
+    }
+  }
+}

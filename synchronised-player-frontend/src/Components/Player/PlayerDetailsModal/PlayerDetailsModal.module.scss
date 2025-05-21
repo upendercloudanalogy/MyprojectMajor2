@@ -1,0 +1,970 @@
+@import "styles/variables";
+
+.container {
+  width: 800px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  min-height: 400px;
+  height: 100%;
+  // overflow-y: auto;
+
+  @keyframes bounce {
+    10% {
+      transform: scaleY(0.3); /* start by scaling to 30% */
+    }
+
+    30% {
+      transform: scaleY(1); /* scale up to 100% */
+    }
+
+    60% {
+      transform: scaleY(0.5); /* scale down to 50% */
+    }
+
+    80% {
+      transform: scaleY(0.75); /* scale up to 75% */
+    }
+
+    100% {
+      transform: scaleY(0.6); /* scale down to 60% */
+    }
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-bottom: 25px;
+
+    .top {
+      display: flex;
+      gap: 8px;
+      justify-content: space-between;
+
+      .right {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .share {
+          svg {
+            color: $primary;
+            height: 20px;
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .musicBar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 13px;
+    height: 13px;
+
+    span {
+      width: 3px;
+      height: 100%;
+      background-color: $white;
+      border-radius: 3px;
+      transform-origin: bottom;
+      content: "";
+
+      &:nth-of-type(1) {
+        transform: scaleY(0.7);
+      }
+
+      &:nth-of-type(2) {
+        transform: scaleY(0.4);
+      }
+    }
+  }
+
+  .playingBars {
+    span {
+      animation: bounce 2.2s ease infinite alternate;
+
+      &:nth-of-type(2) {
+        animation-delay: -2.2s; /* Start at the end of animation */
+      }
+
+      &:nth-of-type(3) {
+        animation-delay: -3.7s; /* Start mid-way of return of animation */
+      }
+    }
+  }
+
+  .roomInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .label {
+      font-size: 16px;
+      line-height: 18px;
+      color: $label;
+    }
+
+    .room {
+      font-size: 16px;
+      line-height: 25px;
+      color: $title;
+
+      span {
+        color: inherit;
+        font: inherit;
+        font-weight: bold;
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+
+    .tab {
+      width: min(30%, 300px);
+      padding: 8px 16px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: $bg-1;
+      text-transform: capitalize;
+      position: relative;
+      color: $title;
+
+      &:hover {
+        background-color: $pinkish;
+      }
+
+      .muteButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: 200ms;
+        padding: 6px;
+
+        &:hover {
+          background-color: $white;
+
+          svg {
+            color: $primary;
+          }
+        }
+
+        svg {
+          height: 16px;
+          width: 16px;
+        }
+      }
+
+      .count {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 22px;
+        width: 22px;
+        border-radius: 50%;
+        background-color: $primary;
+        color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    .active {
+      background-color: $primary;
+      color: $white;
+
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .top {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+
+        & > div {
+          flex: 1;
+        }
+
+        .buttons {
+          flex: 0;
+          width: fit-content;
+          display: flex;
+          gap: 8px;
+          align-items: center;
+        }
+      }
+
+      .btn {
+        padding: 8px 18px;
+        gap: 8px;
+
+        svg {
+          height: 16px;
+          width: 16px;
+          fill: $white;
+        }
+      }
+
+      .bottom {
+        display: flex;
+        gap: 20px;
+        align-items: flex-end;
+
+        & > div {
+          flex: 1;
+        }
+
+        .inputContainer {
+          border-color: $white-2;
+
+          &:hover {
+            border-color: $gray;
+          }
+
+          &:focus-within {
+            border-color: $primary;
+          }
+
+          input {
+            height: 35px;
+          }
+        }
+      }
+    }
+
+    .noSongs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+
+      .msg {
+        font-size: 14px;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+
+    .song {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 6px 16px;
+      box-shadow: $shadow-1;
+      border-radius: 5px;
+      transition: 200ms;
+      background-color: $bg;
+
+      .left {
+        width: 100%;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        overflow: hidden;
+
+        .drag,
+        .play {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            height: 22px;
+            width: 22px;
+            fill: $title;
+          }
+        }
+
+        .play {
+          cursor: pointer;
+
+          svg {
+            height: 16px;
+            width: 16px;
+            fill: $title;
+          }
+        }
+
+        .details {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          .highlight {
+            color: $title;
+            background-color: yellow;
+            display: inline;
+          }
+
+          .top {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+
+            .fit {
+              display: flex;
+              align-items: center;
+            }
+
+            svg {
+              height: 16px;
+              width: 16px;
+              color: $title;
+            }
+          }
+
+          .title {
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: capitalize;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: $title;
+          }
+
+          .desc {
+            color: $desc;
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .deleteIcon {
+          svg {
+            fill: $title;
+            color: $title;
+          }
+        }
+      }
+    }
+
+    .playing {
+      background-color: $primary;
+
+      .left {
+        .drag,
+        .play {
+          svg {
+            fill: $white;
+          }
+        }
+
+        .details {
+          .title {
+            color: $white;
+            font-weight: bold;
+          }
+          .desc {
+            color: $white;
+          }
+        }
+      }
+
+      .right {
+        .deleteIcon {
+          &:hover {
+            svg {
+              color: $white;
+              fill: $white;
+            }
+          }
+
+          svg {
+            color: $white;
+            fill: $white;
+          }
+        }
+      }
+    }
+  }
+
+  .activityDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-height: 600px;
+    overflow-y: auto;
+
+    .activity {
+      padding: 8px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      border-bottom: 1px solid $white-2;
+
+      &:nth-child(even) {
+        background-color: $pinkish;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .time {
+          font-size: 16px;
+          color: $label;
+          font-weight: 500;
+        }
+      }
+
+      .title {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+        color: $title;
+      }
+
+      .desc {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
+        color: $desc;
+      }
+    }
+  }
+
+  .users {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-height: 500px;
+    max-height: 600px;
+    overflow-y: auto;
+
+    .user {
+      padding: 8px 15px;
+      border-bottom: 1px solid $white-2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+
+      &:nth-child(even) {
+        background-color: $pinkish;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        overflow: hidden;
+
+        .image {
+          display: flex;
+          align-items: center;
+
+          img {
+            height: 30px;
+            word-wrap: 30px;
+            border-radius: 50%;
+          }
+        }
+
+        .name {
+          font-size: 16px;
+          line-height: 22px;
+          font-weight: 600;
+        }
+      }
+
+      .right {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+
+        button {
+          padding: 6px;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            height: 18px;
+            width: 18px;
+          }
+        }
+
+        .green {
+          background-color: $green;
+          color: $white !important;
+        }
+
+        .red {
+          background-color: $red;
+          color: $white !important;
+        }
+      }
+
+      .role {
+        min-width: 60px;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .chatBox {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+
+    .empty {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .messagesOuter {
+      flex: 1;
+      position: relative;
+      overflow-y: auto;
+
+      .chatToolbar {
+        margin: 0 auto;
+        width: fit-content;
+        position: sticky;
+        top: 0px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: $bg-1;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.118);
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        z-index: 30;
+
+        button {
+          padding: 6px 12px;
+
+          svg {
+            height: 18px;
+            width: 18px;
+          }
+        }
+      }
+    }
+
+    .messages {
+      // max-height: 100%;
+      height: max-content;
+      padding-bottom: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-right: 5px;
+
+      .message {
+        width: fit-content;
+        max-width: 80%;
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        min-width: 180px;
+
+        .image {
+          img,
+          .imagePlaceholder {
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+          }
+        }
+
+        .inner {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          background-color: $pinkish;
+          border-radius: 10px;
+          border-top-left-radius: 0;
+          overflow: hidden;
+          position: relative;
+
+          .name {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.03);
+            text-align: start;
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: 600;
+            padding: 5px 10px;
+            text-transform: capitalize;
+          }
+
+          .text {
+            padding: 10px;
+            padding-top: 0;
+            padding-bottom: 22px;
+            font-size: 16px;
+            line-height: 1.5;
+            word-break: break-word;
+
+            &.bigText {
+              font-size: 46px;
+            }
+          }
+
+          .timestamp {
+            font-size: 12px;
+            font-weight: 500;
+            text-align: end;
+            position: absolute;
+            bottom: 2px;
+            right: 10px;
+          }
+        }
+      }
+
+      .rightMessage {
+        flex-direction: row-reverse;
+        margin-left: auto;
+
+        .inner {
+          border-top-left-radius: 10px;
+          border-top-right-radius: 0;
+          background-color: $primary;
+
+          .name {
+            text-align: end;
+          }
+
+          .name,
+          .text,
+          .timestamp {
+            color: $white;
+          }
+        }
+      }
+
+      .concurrent {
+        .inner {
+          .text {
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+
+    .footer {
+      width: 100%;
+      background-color: $white-1;
+      border-top: 1px solid $white-2;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      input {
+        flex: 1;
+        padding: 8px 16px;
+        outline: none;
+        border: 1px solid transparent;
+        font-size: 16px;
+        line-height: 25px;
+        color: $title;
+        border-radius: 5px;
+        background-color: $white-1;
+        transition: 200ms;
+
+        &::placeholder {
+          color: $desc;
+        }
+
+        &:hover {
+          border-color: $white-2;
+        }
+
+        &:focus {
+          border-color: $primary;
+        }
+      }
+
+      button {
+        padding: 6px 14px;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    height: 100%;
+    padding: 10px;
+
+    .head {
+      gap: 20px;
+      padding-bottom: 20px;
+
+      .top {
+        .right {
+          .share {
+            svg {
+              height: 18px;
+              width: 18px;
+            }
+          }
+        }
+      }
+    }
+
+    .roomInfo {
+      .label {
+        font-size: 14px;
+        line-height: 16px;
+        color: $gray;
+      }
+
+      .room {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+
+    .tabs {
+      .tab {
+        font-size: 16px;
+
+        .muteButton {
+          left: 3px;
+          padding: 4px;
+        }
+      }
+    }
+
+    .playlist {
+      padding-bottom: 30px;
+      gap: 15px;
+
+      .controls {
+        .top {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+
+      .song {
+        gap: 12px;
+
+        .left {
+          gap: 10px;
+
+          .drag,
+          .play {
+            svg {
+              height: 18px;
+              width: 18px;
+            }
+          }
+
+          .play {
+            svg {
+              height: 14px;
+              width: 14px;
+            }
+          }
+
+          .details {
+            .title {
+              font-size: 14px;
+            }
+
+            .desc {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+
+    .activityDiv {
+      max-height: calc(100% - var(--header-height) - 2px);
+      padding: 5px;
+
+      .activity {
+        .top {
+          .time {
+            font-size: 14px;
+          }
+        }
+
+        .title {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        .desc {
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+    }
+
+    .users {
+      min-height: 530px;
+      padding: 6px;
+
+      .user {
+        gap: 15px;
+
+        .left {
+          gap: 8px;
+
+          .image {
+            img {
+              height: 24px;
+              word-wrap: 24px;
+            }
+          }
+
+          .name {
+            font-size: 14px;
+            line-height: 18px;
+          }
+        }
+
+        .role {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+    }
+
+    .chatBox {
+      height: calc(100% - var(--header-height) - 2px);
+
+      .empty {
+        font-size: 16px;
+      }
+
+      .messagesOuter {
+        .chatToolbar {
+          top: -1px;
+          padding: 6px 10px;
+          gap: 10px;
+
+          button {
+            svg {
+              height: 16px;
+              width: 16px;
+            }
+          }
+        }
+      }
+
+      .messages {
+        .message {
+          gap: 5px;
+          max-width: 90%;
+
+          .image {
+            img,
+            .imagePlaceholder {
+              height: 22px;
+              width: 22px;
+            }
+          }
+
+          .inner {
+            border-radius: 5px;
+
+            .name {
+              font-size: 12px;
+              line-height: 14px;
+            }
+
+            .text {
+              padding: 8px;
+              padding-top: 0;
+              font-size: 14px;
+              padding-bottom: 16px;
+            }
+
+            .timestamp {
+              font-size: 12px;
+            }
+          }
+        }
+
+        .rightMessage {
+          .inner {
+            border-top-left-radius: 5px;
+          }
+        }
+
+        .concurrent {
+          .inner {
+            .text {
+              padding-top: 8px;
+            }
+          }
+        }
+      }
+
+      .footer {
+        gap: 8px;
+
+        input {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "styles/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px;
+  width: 500px;
+  max-width: 100%;
+
+  .title {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  .desc {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: center;
+    color: $gray;
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+  }
+}

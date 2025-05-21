@@ -1,0 +1,251 @@
+@import "styles/variables";
+
+.container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    row-gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-size: 26px;
+      font-weight: bold;
+      color: $heading;
+    }
+
+    .buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+
+  .rooms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-evenly;
+
+    .room {
+      align-self: stretch;
+      width: clamp(380px, 30%, 480px);
+      padding: 15px 25px;
+      border-radius: 10px;
+      background-color: $white;
+      box-sizing: $shadow-1;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      .title {
+        text-transform: capitalize;
+        font-size: 24px;
+        font-weight: 600;
+        color: $title;
+      }
+
+      .playlist {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        // background-color: $white;
+        // padding: 15px;
+        // border-radius: 10px;
+
+        label {
+          font-size: 18px;
+          line-height: 22px;
+          font-weight: 600;
+          color: $label;
+        }
+
+        .songs {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          row-gap: 10px;
+          align-items: center;
+
+          .song {
+            padding: 6px 12px;
+            border-radius: 30px;
+            background-color: $pinkish;
+            background-color: $white-1;
+            color: $title;
+            font-size: 16px;
+            font-weight: 600;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+        }
+      }
+
+      .duration {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: flex-end;
+
+        label {
+          color: $title;
+        }
+
+        .value {
+          font-size: 16px;
+          font-weight: 400;
+          color: $title;
+
+          span {
+            color: inherit;
+            margin-left: 8px;
+            font: inherit;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .footer {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .bottom {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+
+          .profiles {
+            display: flex;
+            position: relative;
+            min-height: 40px;
+            width: 5px;
+            z-index: 5;
+
+            .profile {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              border-radius: 50%;
+              border: 2px solid $white;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 5;
+
+              img {
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+                overflow: hidden;
+              }
+            }
+          }
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: flex-end;
+          gap: 10px;
+          align-items: center;
+
+          button {
+            padding: 6px 12px;
+            font-weight: 600;
+          }
+
+          .greenBtn {
+            background-color: $green;
+            cursor: default;
+          }
+        }
+      }
+
+      .user {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        .image {
+          img {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+          }
+        }
+
+        .name {
+          text-transform: capitalize;
+          font-size: 20px;
+          margin-top: -6px;
+          font-weight: 500;
+          color: $title;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: 20px;
+    gap: 20px;
+
+    .header {
+      .title {
+        font-size: 20px;
+      }
+    }
+
+    .rooms {
+      gap: 25px;
+
+      .room {
+        padding: 20px;
+        gap: 25px;
+        width: clamp(280px, 410px, 100%);
+
+        .title {
+          font-size: 18px;
+        }
+
+        .playlist {
+          gap: 8px;
+
+          label {
+            font-size: 16px;
+          }
+
+          .songs {
+            .song {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .user {
+          .image {
+            img {
+              height: 26px;
+              width: 26px;
+            }
+          }
+
+          .name {
+            font-size: 16px;
+            margin-top: -3px;
+          }
+        }
+      }
+    }
+  }
+}
